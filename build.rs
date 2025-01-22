@@ -32,6 +32,8 @@ fn main() -> Result<()> {
     let builder = bindgen_cuda::Builder::default().kernel_paths(kernels).out_dir(build_dir.clone())
                     .arg("-std=c++17")
                     .arg("-O3")
+                    .arg("--compiler-options")
+                    .arg("-fPIC")
                     .arg("-U__CUDA_NO_HALF_OPERATORS__")
                     .arg("-U__CUDA_NO_HALF_CONVERSIONS__")
                     .arg("-U__CUDA_NO_HALF2_OPERATORS__")
