@@ -51,6 +51,8 @@ fn main() -> Result<()> {
 
     println!("cargo:rustc-link-search={}", build_dir.display());
     println!("cargo:rustc-link-lib=rotary");
+
+    #[cfg(feature = "dynamic-linking")]
     println!("cargo:rustc-link-lib=dylib=cudart");
     if !target.contains("msvc") {
         println!("cargo:rustc-link-lib=dylib=stdc++");

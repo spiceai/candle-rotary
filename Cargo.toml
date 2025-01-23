@@ -10,7 +10,8 @@ license = "MIT OR Apache-2.0"
 readme = "README.md"
 
 [dependencies]
-candle = { version = "*", package = "candle-core", features = ["cuda"]}
+#candle = { version = "*", package = "candle-core", features = ["cuda"]}
+candle = { git = "https://github.com/spiceai/candle.git", version = "0.8", rev = "2056b181860620971fa3b43c69ad8d26321e9cda", package = "candle-core", default-features = false }
 half = { version = "2.3.1", features = ["num-traits"] }
 
 [build-dependencies]
@@ -20,3 +21,6 @@ bindgen_cuda = "0.1.1"
 [dev-dependencies]
 anyhow = { version = "1", features = ["backtrace"] }
 candle-nn = { version = "0.3.0", features = ["cuda"] }
+
+[features]
+dynamic-linking = []
