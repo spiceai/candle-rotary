@@ -11,7 +11,7 @@ readme = "README.md"
 
 [dependencies]
 #candle = { version = "*", package = "candle-core", features = ["cuda"]}
-candle = { git = "https://github.com/spiceai/candle.git", version = "0.8", rev = "a84593f1951a4a9083e29257003a8112eb1450da", package = "candle-core", default-features = false }
+candle = { git = "https://github.com/spiceai/candle.git", version = "0.8", rev = "d182e6f3a114a34c1dd56b6cbb36c89c111d2d45", package = "candle-core", default-features = false }
 half = { version = "2.3.1", features = ["num-traits"] }
 
 [build-dependencies]
