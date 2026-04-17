@@ -102,10 +102,21 @@ fn apply_rotary_<
     let query_stride = q_l.stride()[0];
     let key_stride = k_l.stride()[0];
 
-    let q_ptr = *q.device_ptr() as *const core::ffi::c_void;
-    let k_ptr = *k.device_ptr() as *const core::ffi::c_void;
-    let cc_ptr = *cc.device_ptr() as *const core::ffi::c_void;
-    let sc_ptr = *sc.device_ptr() as *const core::ffi::c_void;
+    // cudarc 0.19 device_ptr() takes a CudaStream and returns (u64, guard).
+    let dev = match query.device() {
+        Device::Cuda(d) => d,
+        _ => candle::bail!("query must be on a cuda device"),
+    };
+    let stream = dev.cuda_stream();
+
+    let (q_ptr, _q_g) = q.device_ptr(&stream);
+    let (k_ptr, _k_g) = k.device_ptr(&stream);
+    let (cc_ptr, _cc_g) = cc.device_ptr(&stream);
+    let (sc_ptr, _sc_g) = sc.device_ptr(&stream);
+    let q_ptr = q_ptr as *const core::ffi::c_void;
+    let k_ptr = k_ptr as *const core::ffi::c_void;
+    let cc_ptr = cc_ptr as *const core::ffi::c_void;
+    let sc_ptr = sc_ptr as *const core::ffi::c_void;
 
     let neox = if is_neox { 1 } else { 0 };
 
