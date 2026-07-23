@@ -88,7 +88,7 @@ __global__ void rotary_embedding_kernel(
     num_kv_heads,                                                             \
     head_size);
 
-extern "C" void rotary_embedding(
+extern "C" void candle_rotary_embedding(
   void *query,             // [num_tokens, num_heads, head_size]
   void *key,               // [num_tokens, num_kv_heads, head_size]
   void *cos_cache,         // [num_tokens, rot_dim]

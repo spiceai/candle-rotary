@@ -121,7 +121,7 @@ fn apply_rotary_<
     let neox = if is_neox { 1 } else { 0 };
 
     unsafe {
-        ffi::rotary_embedding(
+        ffi::candle_rotary_embedding(
             q_ptr,
             k_ptr,
             cc_ptr,

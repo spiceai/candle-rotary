@@ -1,7 +1,7 @@
 use core::ffi::{c_int, c_long, c_void};
 
 extern "C" {
-    pub(crate) fn rotary_embedding(
+    pub(crate) fn candle_rotary_embedding(
         query: *const c_void,
         key: *const c_void,
         cos_cache: *const c_void,
