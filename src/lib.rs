@@ -113,8 +113,8 @@ fn apply_rotary_<
     let (k_ptr, _k_g) = k.device_ptr(&stream);
     let (cc_ptr, _cc_g) = cc.device_ptr(&stream);
     let (sc_ptr, _sc_g) = sc.device_ptr(&stream);
-    let q_ptr = q_ptr as *const core::ffi::c_void;
-    let k_ptr = k_ptr as *const core::ffi::c_void;
+    let q_ptr = q_ptr as *mut core::ffi::c_void;
+    let k_ptr = k_ptr as *mut core::ffi::c_void;
     let cc_ptr = cc_ptr as *const core::ffi::c_void;
     let sc_ptr = sc_ptr as *const core::ffi::c_void;
 
