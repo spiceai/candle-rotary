@@ -1,9 +1,10 @@
 use core::ffi::{c_int, c_long, c_void};
 
 extern "C" {
-    pub(crate) fn rotary_embedding(
-        query: *const c_void,
-        key: *const c_void,
+    pub(crate) fn candle_rotary_embedding(
+        // `query` and `key` are rotated in place by the kernel; the caches are read-only.
+        query: *mut c_void,
+        key: *mut c_void,
         cos_cache: *const c_void,
         sin_cache: *const c_void,
 
